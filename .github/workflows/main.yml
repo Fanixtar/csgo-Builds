@@ -29,14 +29,14 @@ jobs:
     - name: Install DirectX SDK
       shell: bash
       run: |
-       curl https://github.com/apitrace/dxsdk/archive/master.tar.gz -o _DX2010_.exe
-       7z x _DX2010_.exe DXSDK/Include -o_DX2010_
-       7z x _DX2010_.exe DXSDK/Lib -o_DX2010_
-       mv _DX2010_/DXSDK $GITHUB_WORKSPACE/DXSDK
-       rm -fR _DX*_ _DX*_.exe
-       ls $GITHUB_WORKSPACE/DXSDK
-        echo "DXSDK_DIR=$GITHUB_WORKSPACE/DXSDK" >> $GITHUB_ENV
-        echo "$GITHUB_WORKSPACE/DXSDK" >> $GITHUB_PATH
+        curl https://github.com/apitrace/dxsdk/archive/master.tar.gz -o _DX2010_.exe
+        7z x _DX2010_.exe DXSDK/Include -o_DX2010_
+        7z x _DX2010_.exe DXSDK/Lib -o_DX2010_
+        mv _DX2010_/DXSDK $GITHUB_WORKSPACE/DXSDK
+        rm -fR _DX*_ _DX*_.exe
+        ls $GITHUB_WORKSPACE/DXSDK
+        echo "DXSDK_DIR=$GITHUB_WORKSPACE/DXSDK/" >> $GITHUB_ENV
+        echo "$GITHUB_WORKSPACE/DXSDK/" >> $GITHUB_PATH
 
     - name: Install MSBuild
       uses: microsoft/setup-msbuild@v1.0.2
