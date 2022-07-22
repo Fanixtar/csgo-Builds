@@ -17,17 +17,19 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
       
     - name: Set DirectX SDK Path
       shell: bash
       run: echo ::set-env name=DXSDK_DIR::$HOME/cache/
       
     - name: Cache
-      id:   cache
+      id: cache
       uses: actions/cache@v1
       with:
        path: ~/cache
-       key:  cache
+       key: cache
        
     - name: Create create
       if: steps.cache.outputs.cache-hit != 'true'
@@ -38,9 +40,6 @@ jobs:
        mv _DX2010_/DXSDK $HOME/cache
        rm -fR _DX*_ _DX*_.exe
       shell: bash
-
-    - name: Checkout
-      uses: actions/checkout@v3
 
     - name: Install MSBuild
       uses: microsoft/setup-msbuild@v1.0.2
