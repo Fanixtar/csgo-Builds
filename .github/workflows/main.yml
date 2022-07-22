@@ -30,10 +30,14 @@ jobs:
       shell: bash
       run: |
         curl https://github.com/apitrace/dxsdk/archive/master.tar.gz -o _DX2010_.exe
-        7z x _DX2010_.exe DXSDK/Include -o_DX2010_
-        7z x _DX2010_.exe DXSDK/Lib -o_DX2010_
-        mv _DX2010_/DXSDK $GITHUB_WORKSPACE/DXSDK
-        rm -fR _DX*_ _DX*_.exe
+        #7z x _DX2010_.exe DXSDK/Include -o_DX2010_
+        #7z x _DX2010_.exe DXSDK/Lib -o_DX2010_
+        tar -xz -f _DX2010_.exe
+        mkdir $GITHUB_WORKSPACE/DXSDK/
+        mv dxsdk-master/Include $GITHUB_WORKSPACE/DXSDK/Include
+        mv dxsdk-master/Lib $GITHUB_WORKSPACE/DXSDK/Lib
+        #mv _DX2010_/DXSDK $GITHUB_WORKSPACE/DXSDK
+        rm -fR _DX*_ _DX*_.exe dxsdk-*
         ls $GITHUB_WORKSPACE/DXSDK
         echo "DXSDK_DIR=$GITHUB_WORKSPACE/DXSDK/" >> $GITHUB_ENV
         echo "$GITHUB_WORKSPACE/DXSDK/" >> $GITHUB_PATH
