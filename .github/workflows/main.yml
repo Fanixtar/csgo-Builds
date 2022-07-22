@@ -20,7 +20,11 @@ jobs:
     steps:
     - name: Set DirectX SDK Path
       shell: bash
-      run: echo ::set-env name=DXSDK_DIR::$HOME/cache/
+      run: echo "DXSDK_DIR=$HOME/cache/" >> $GITHUB_ENV
+      
+    #- name: Set DirectX SDK Path
+     # shell: bash
+     # run: echo ::set-env name=DXSDK_DIR::$HOME/cache/
       
     - name: Cache
       id:   cache
