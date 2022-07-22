@@ -26,25 +26,25 @@ jobs:
 
     - name: Clone
       shell: bash
-      run: git clone --recurse-submodules https://github.com/ItzPAX/csgocheat
+      run: git clone --recurse-submodules https://github.com/Bartis1313/csgo
         
     - name: Build solution
-      working-directory: ./csgocheat
+      working-directory: ./csgo
       env:
-        SOLUTION_FILE_PATH: ./csgocheat.sln
+        SOLUTION_FILE_PATH: ./csgo-legit.sln
         BUILD_CONFIGURATION: Release
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
         
     - name: Removing unused files
       shell: bash
       run: |
-        rm -rf ./csgocheat/output/${{ matrix.platform }}/${{ matrix.configuration }}/obj
-        rm -rf ./csgocheat/output/${{ matrix.platform }}/${{ matrix.configuration }}/*.pdb
-        rm -rf ./csgocheat/output/${{ matrix.platform }}/${{ matrix.configuration }}/*.obj
+        rm -rf ./csgo/build/${{ matrix.platform }}/${{ matrix.configuration }}/obj
+        rm -rf ./csgo/build/${{ matrix.platform }}/${{ matrix.configuration }}/*.pdb
+        rm -rf ./csgo/build/${{ matrix.platform }}/${{ matrix.configuration }}/*.obj
       
     - name: Upload latest artifact
       uses: actions/upload-artifact@v3.1.0
       with:
-        name: csgocheat-${{ matrix.platform }}-${{ matrix.configuration }}
-        path: ./csgocheat/output/${{ matrix.platform }}/${{ matrix.configuration }}/*
+        name: csgo-${{ matrix.platform }}-${{ matrix.configuration }}
+        path: ./csgo/build/${{ matrix.platform }}/${{ matrix.configuration }}/*
         if-no-files-found: error
