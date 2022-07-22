@@ -25,6 +25,12 @@ jobs:
       #  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       #shell: bash
       #run: echo ::set-env name=DXSDK_DIR::$HOME/cache/
+      
+    - name: Set DirectX SDK Path
+      shell: bash
+      run: |
+        echo "DXSDK_DIR=$GITHUB_WORKSPACE/DXSDK" >> $GITHUB_ENV
+        echo "$GITHUB_WORKSPACE/DXSDK" >> $GITHUB_PATH
        
     - name: Install DirectX SDK
       shell: bash
