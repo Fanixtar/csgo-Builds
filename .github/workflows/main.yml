@@ -55,13 +55,13 @@ jobs:
     - name: Removing unused files
       shell: bash
       run: |
-        rm -rf ./csgo/build/${{ matrix.platform }}/${{ matrix.configuration }}/obj
-        rm -rf ./csgo/build/${{ matrix.platform }}/${{ matrix.configuration }}/*.pdb
-        rm -rf ./csgo/build/${{ matrix.platform }}/${{ matrix.configuration }}/*.obj
+        rm -rf ./csgo/build/${{ matrix.configuration }}/obj
+        rm -rf ./csgo/build/${{ matrix.configuration }}/*.pdb
+        rm -rf ./csgo/build/${{ matrix.configuration }}/*.obj
       
     - name: Upload latest artifact
       uses: actions/upload-artifact@v3.1.0
       with:
         name: csgo-${{ matrix.platform }}-${{ matrix.configuration }}
-        path: ./csgo/build/${{ matrix.platform }}/${{ matrix.configuration }}/*
+        path: ./csgo/build/${{ matrix.configuration }}/*
         if-no-files-found: error
